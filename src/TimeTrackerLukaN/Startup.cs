@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TimeTrackerLukaN.Data;
+using TimeTrackerLukaN.Models.Validation;
 
 namespace TimeTrackerLukaN
 {
@@ -30,7 +32,8 @@ namespace TimeTrackerLukaN
             services.AddDbContext<TimeTrackerDbContext>(options => 
             options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation(
+                options => options.RegisterValidatorsFromAssemblyContaining<UserInputModelValidator>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
