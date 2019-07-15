@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TimeTrackerLukaN.Data;
+using TimeTrackerLukaN.Extensions;
 using TimeTrackerLukaN.Models.Validation;
 
 namespace TimeTrackerLukaN
@@ -31,6 +32,8 @@ namespace TimeTrackerLukaN
         {
             services.AddDbContext<TimeTrackerDbContext>(options => 
             options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddJwtBearerAuthentication(Configuration);
 
             services.AddControllers().AddFluentValidation(
                 options => options.RegisterValidatorsFromAssemblyContaining<UserInputModelValidator>());
@@ -55,6 +58,7 @@ namespace TimeTrackerLukaN
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -62,10 +66,6 @@ namespace TimeTrackerLukaN
                 endpoints.MapControllers();
             });
         }
-
-        public async Task MyCustomMiddleware()
-        {
-
-        }
+        
     }
 }

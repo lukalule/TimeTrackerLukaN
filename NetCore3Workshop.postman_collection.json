@@ -6,366 +6,844 @@
 	},
 	"item": [
 		{
-			"name": "Get users",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44365/api/users",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44365",
-					"path": [
-						"api",
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get user",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44365/api/users/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44365",
-					"path": [
-						"api",
-						"users",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create user",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"Name\": \"Lukaaaa\",\n\t\"HourRate\": 15\n}"
+			"name": "No Auth",
+			"item": [
+				{
+					"name": "Get users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44365/api/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44365",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:44365/api/users",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44365",
-					"path": [
-						"api",
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create client",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"Name\": \"new client\"\n}"
+				{
+					"name": "Get user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44365/api/users/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44365",
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:44365/api/clients",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44365",
-					"path": [
-						"api",
-						"clients"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create project",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"Name\": \"new project\",\n\t\"clientId\": 1\n}"
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Name\": \"Lukaaaa\",\n\t\"HourRate\": 15\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44365/api/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44365",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:44365/api/projects",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44365",
-					"path": [
-						"api",
-						"projects"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create time entry",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"userId\": 1,\n\t\"projectId\": 2,\n\t\"entryDate\": \"2019-07-15\",\n\t\"hours\": 5,\n\t\"description\": \"Some description from an old script\"\n}"
+				{
+					"name": "Create client",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Name\": \"new client\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44365/api/clients",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44365",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:44365/api/time-entries",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44365",
-					"path": [
-						"api",
-						"time-entries"
-					]
+				{
+					"name": "Create project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Name\": \"new project\",\n\t\"clientId\": 1\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44365/api/projects",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44365",
+							"path": [
+								"api",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create time entry",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\": 1,\n\t\"projectId\": 2,\n\t\"entryDate\": \"2019-07-15\",\n\t\"hours\": 5,\n\t\"description\": \"Some description from an old script\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44365/api/time-entries",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44365",
+							"path": [
+								"api",
+								"time-entries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44365/api/projects?=page=1&size=5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44365",
+							"path": [
+								"api",
+								"projects"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "page=1"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get client",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44365/api/clients/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44365",
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get clients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44365/api/clients",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44365",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44365/api/projects/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44365",
+							"path": [
+								"api",
+								"projects",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get time entries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44365/api/time-entries",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44365",
+							"path": [
+								"api",
+								"time-entries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get time entry",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44365/api/time-entries/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44365",
+							"path": [
+								"api",
+								"time-entries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n\t\t\"name\": \"Banana\",\n\t\t\"hourRate\": 14\n\t}\n"
+						},
+						"url": {
+							"raw": "https://localhost:44365/api/users/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44365",
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update project",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n\t\t\"name\": \"Modified project\",\n\t\t\"clientId\": 2\n\t}\n"
+						},
+						"url": {
+							"raw": "https://localhost:44365/api/projects/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44365",
+							"path": [
+								"api",
+								"projects",
+								"3"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Get projects",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44365/api/projects?=page=1&size=5",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44365",
-					"path": [
-						"api",
-						"projects"
-					],
-					"query": [
+			"name": "Jwt Token Auth",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
 						{
-							"key": "",
-							"value": "page=1"
+							"name": "Get user",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44365/api/users/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44365",
+									"path": [
+										"api",
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
 						},
 						{
-							"key": "size",
-							"value": "5"
+							"name": "Create user",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Name\": \"Lukaaaa\",\n\t\"HourRate\": 15\n}"
+								},
+								"url": {
+									"raw": "https://localhost:44365/api/users",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44365",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create client",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Name\": \"new client\"\n}"
+								},
+								"url": {
+									"raw": "https://localhost:44365/api/clients",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44365",
+									"path": [
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create project",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"Name\": \"new project\",\n\t\"clientId\": 1\n}"
+								},
+								"url": {
+									"raw": "https://localhost:44365/api/projects",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44365",
+									"path": [
+										"api",
+										"projects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create time entry",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"userId\": 1,\n\t\"projectId\": 2,\n\t\"entryDate\": \"2019-07-15\",\n\t\"hours\": 5,\n\t\"description\": \"Some description from an old script\"\n}"
+								},
+								"url": {
+									"raw": "https://localhost:44365/api/time-entries",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44365",
+									"path": [
+										"api",
+										"time-entries"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get projects",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44365/api/projects?=page=1&size=5",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44365",
+									"path": [
+										"api",
+										"projects"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "page=1"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44365/api/users",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44365",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get client",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44365/api/clients/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44365",
+									"path": [
+										"api",
+										"clients",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get clients",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44365/api/clients",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44365",
+									"path": [
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get projects",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44365/api/projects/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44365",
+									"path": [
+										"api",
+										"projects",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get time entries",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44365/api/time-entries",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44365",
+									"path": [
+										"api",
+										"time-entries"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get time entry",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:44365/api/time-entries/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44365",
+									"path": [
+										"api",
+										"time-entries",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update user",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\t{\n\t\t\"name\": \"Banana\",\n\t\t\"hourRate\": 14\n\t}\n"
+								},
+								"url": {
+									"raw": "https://localhost:44365/api/users/1",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44365",
+									"path": [
+										"api",
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update project",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\t{\n\t\t\"name\": \"Modified project\",\n\t\t\"clientId\": 2\n\t}\n"
+								},
+								"url": {
+									"raw": "https://localhost:44365/api/projects/3",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "44365",
+									"path": [
+										"api",
+										"projects",
+										"3"
+									]
+								}
+							},
+							"response": []
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get client",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44365/api/clients/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
 					],
-					"port": "44365",
-					"path": [
-						"api",
-						"clients",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get clients",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44365/api/clients",
-					"protocol": "https",
-					"host": [
-						"localhost"
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{admin}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "846a7b76-d5d3-40a6-b102-3754fd7a37b3",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "7f836c71-2243-4068-8ac8-191282aca2cb",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
 					],
-					"port": "44365",
-					"path": [
-						"api",
-						"clients"
-					]
+					"_postman_isSubFolder": true
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get projects",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44365/api/projects/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44365",
-					"path": [
-						"api",
-						"projects",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get time entries",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44365/api/time-entries",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44365",
-					"path": [
-						"api",
-						"time-entries"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get time entry",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:44365/api/time-entries/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44365",
-					"path": [
-						"api",
-						"time-entries",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update user",
-			"request": {
-				"method": "PUT",
-				"header": [
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
 					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
 					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "\t{\n\t\t\"name\": \"Banana\",\n\t\t\"hourRate\": 14\n\t}\n"
-				},
-				"url": {
-					"raw": "https://localhost:44365/api/users/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44365",
-					"path": [
-						"api",
-						"users",
-						"1"
-					]
-				}
+				]
 			},
-			"response": []
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f45cda93-95d8-4d09-952b-a7f772424120",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "adc160f4-8699-4b4d-839b-024a19fd4bf3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "004a8a19-729d-4eaa-9c48-b54526f76e60",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		},
 		{
-			"name": "Update project",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "\t{\n\t\t\"name\": \"Modified project\",\n\t\t\"clientId\": 2\n\t}\n"
-				},
-				"url": {
-					"raw": "https://localhost:44365/api/projects/3",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "44365",
-					"path": [
-						"api",
-						"projects",
-						"3"
-					]
-				}
-			},
-			"response": []
+			"listen": "test",
+			"script": {
+				"id": "dbffc982-f805-4be7-ab40-e443539cf057",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "c8ec50a0-16c3-4490-9e3c-a89f3572040f",
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "e2403c2b-8029-4ecd-b2e4-1816d6f4be35",
+			"key": "admin",
+			"value": "",
+			"type": "string"
 		}
 	]
 }

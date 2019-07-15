@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Linq;
@@ -9,6 +10,7 @@ using TimeTrackerLukaN.Models;
 namespace TimeTrackerLukaN.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("/api/users")]
     public class UsersController : Controller
     {
@@ -55,6 +57,7 @@ namespace TimeTrackerLukaN.Controllers
             };
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(long id)
         {
             _logger.LogInformation($"Deleting User with id {id}");
@@ -72,6 +75,7 @@ namespace TimeTrackerLukaN.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<UserModel>> Create(UserInputModel model)
         {
             _logger.LogInformation($"Creating new user with {model.Name}");
@@ -87,6 +91,7 @@ namespace TimeTrackerLukaN.Controllers
 
         }
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<UserModel>>Update(long id, UserInputModel model)
         {
             _logger.LogInformation($"Update user with id: {id}");

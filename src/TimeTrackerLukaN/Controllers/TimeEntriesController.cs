@@ -16,6 +16,7 @@ namespace TimeTrackerLukaN.Controllers
     /// </summary>
     [ApiController]
     [Route("/api/time-entries")]
+    [Authorize]
     public class TimeEntriesController : Controller
     {
         private readonly TimeTrackerDbContext _dbContext;
@@ -69,6 +70,7 @@ namespace TimeTrackerLukaN.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(long id)
         {
             _logger.LogDebug($"Deleting time entries with id {id}");
@@ -87,6 +89,7 @@ namespace TimeTrackerLukaN.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<TimeEntryModel>> Create(TimeEntryInputModel model)
         {
             _logger.LogDebug(
@@ -114,6 +117,7 @@ namespace TimeTrackerLukaN.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<TimeEntryModel>> Update(long id, TimeEntryInputModel model)
         {
             _logger.LogDebug($"Updating time entry with id {id}");

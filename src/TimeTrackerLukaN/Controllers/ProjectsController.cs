@@ -8,11 +8,13 @@ using Microsoft.CodeAnalysis.CSharp;
 using TimeTrackerLukaN.Data;
 using TimeTrackerLukaN.Models;
 using TimeTrackerLukaN.Domain;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TimeTrackerLukaN.Controllers
 {
     [ApiController]
     [Route("/api/projects")]
+    [Authorize]
     public class ProjectsController : Controller
     {
         private readonly TimeTrackerDbContext _dbContext;
@@ -62,6 +64,7 @@ namespace TimeTrackerLukaN.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(long id)
         {
             _logger.LogDebug($"Deleting project with id {id}");
@@ -80,6 +83,7 @@ namespace TimeTrackerLukaN.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<ProjectModel>> Create(ProjectInputModel model)
         {
             _logger.LogDebug($"Creating a new project with name {model.Name}");
@@ -102,6 +106,7 @@ namespace TimeTrackerLukaN.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<ProjectModel>> Update(long id, ProjectInputModel model)
         {
             _logger.LogDebug($"Updating project with id {id}");

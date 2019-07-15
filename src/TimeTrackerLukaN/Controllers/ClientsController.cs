@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ namespace TimeTrackerLukaN.Controllers
 {
     [ApiController]
     [Route("/api/clients")]
+    [Authorize]
     public class ClientsController : Controller
     {
         private readonly TimeTrackerDbContext _dbContext;
@@ -60,6 +62,7 @@ namespace TimeTrackerLukaN.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(long id)
         {
             _logger.LogDebug($"Deleting client with id {id}");
@@ -78,6 +81,7 @@ namespace TimeTrackerLukaN.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<ClientModel>> Create(ClientInputModel model)
         {
             _logger.LogDebug($"Creating a new client with name {model.Name}");
@@ -94,6 +98,7 @@ namespace TimeTrackerLukaN.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<ClientModel>> Update(long id, ClientInputModel model)
         {
             _logger.LogDebug($"Updating client with id {id}");
