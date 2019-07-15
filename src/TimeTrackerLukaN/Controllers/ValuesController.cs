@@ -14,6 +14,7 @@ namespace TimeTrackerLukaN.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            throw new Exception("Testing middleware");
             return new string[] { "value1", "value2" };
         }
 

@@ -49,6 +49,8 @@ namespace TimeTrackerLukaN
                 app.UseHsts();
             }
 
+            app.UseMiddleware<ErrorHandlingMiddleware>();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -59,6 +61,11 @@ namespace TimeTrackerLukaN
             {
                 endpoints.MapControllers();
             });
+        }
+
+        public async Task MyCustomMiddleware()
+        {
+
         }
     }
 }
