@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.CodeAnalysis.CSharp;
 using TimeTrackerLukaN.Data;
 using TimeTrackerLukaN.Models;
+using TimeTrackerLukaN.Domain;
 
 namespace TimeTrackerLukaN.Controllers
 {
@@ -23,25 +24,7 @@ namespace TimeTrackerLukaN.Controllers
             _logger = logger;
         }
 
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<ProjectModel>> GetById(long id)
-        //{
-        //    _logger.LogInformation($"Get project by id: {id}");
-        //    var project = await _dbContext.Projects
-        //        .Include(x => x.Client)
-        //        .SingleOrDefaultAsync(x => x.Id == id);
-
-        //    if (project == null)
-        //    {
-        //        _logger.LogWarning($"project with id {id} is not found");
-        //        return NotFound();
-        //    }
-
-        //    return ProjectModel.FromProject(project);
-        //}
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProjectModel))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProjectModel>> GetById(long id)
         {
             _logger.LogDebug($"Getting a project with id {id}");
@@ -52,7 +35,6 @@ namespace TimeTrackerLukaN.Controllers
 
             if (project == null)
             {
-                _logger.LogWarning($"project with id {id} is not found");
                 return NotFound();
             }
 
@@ -60,9 +42,9 @@ namespace TimeTrackerLukaN.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PagedListModel<ProjectModel>>> GetPage(int page = 1, int size = 5)
+        public async Task<ActionResult<PagedList<ProjectModel>>> GetPage(int page = 1, int size = 5)
         {
-            _logger.LogInformation($"Getting a page {page} of users with page size {size}");
+            _logger.LogDebug($"Getting a page {page} of projects with page size {size}");
 
             var projects = await _dbContext.Projects
                 .Include(x => x.Client)
@@ -70,30 +52,65 @@ namespace TimeTrackerLukaN.Controllers
                 .Take(size)
                 .ToListAsync();
 
-            var totalProjects = await _dbContext.Projects.CountAsync();
-
-            return new PagedListModel<ProjectModel>
+            return new PagedList<ProjectModel>
             {
                 Items = projects.Select(ProjectModel.FromProject),
                 Page = page,
                 PageSize = size,
-                TotalCount = totalProjects
+                TotalCount = await _dbContext.Projects.CountAsync()
             };
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(long id)
+        {
+            _logger.LogDebug($"Deleting project with id {id}");
+
+            var project = await _dbContext.Projects.FindAsync(id);
+
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            _dbContext.Projects.Remove(project);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ProjectModel>> Create(ProjectInputModel model)
+        {
+            _logger.LogDebug($"Creating a new project with name {model.Name}");
+
+            var client = await _dbContext.Clients.FindAsync(model.ClientId);
+            if (client == null)
+            {
+                return NotFound();
+            }
+
+            var project = new Project { Client = client };
+            model.MapTo(project);
+
+            await _dbContext.Projects.AddAsync(project);
+            await _dbContext.SaveChangesAsync();
+
+            var resultModel = ProjectModel.FromProject(project);
+
+            return CreatedAtAction(nameof(GetById), "projects", new { id = project.Id }, resultModel);
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<ProjectModel>> Update(long id, ProjectInputModel model)
         {
-            _logger.LogInformation($"update user with id: {id}");
+            _logger.LogDebug($"Updating project with id {id}");
 
             var project = await _dbContext.Projects.FindAsync(id);
             var client = await _dbContext.Clients.FindAsync(model.ClientId);
 
-
             if (project == null || client == null)
             {
-                _logger.LogWarning($"user with id {id} is not found");
-
                 return NotFound();
             }
 
@@ -104,51 +121,6 @@ namespace TimeTrackerLukaN.Controllers
             await _dbContext.SaveChangesAsync();
 
             return ProjectModel.FromProject(project);
-
-
-
-        }
-
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ProjectModel>> Create(ProjectInputModel model)
-        {
-            _logger.LogInformation($"create new project with name: {model.Name}");
-            var client = await _dbContext.Clients.FindAsync(model.ClientId);
-            if (client == null)
-            {
-                return NotFound();
-            }
-
-            var project = new Domain.Project {Client = client};
-            model.MapTo(project);
-
-            await _dbContext.Projects.AddAsync(project);
-            await _dbContext.SaveChangesAsync();
-
-            var resultModel = ProjectModel.FromProject(project);
-
-            return CreatedAtAction(nameof(GetById), "projects", new {id = project.Id}, resultModel);
-
-        }
-        [HttpDelete("{id}")]
-
-        public async Task<ActionResult<ProjectModel>> Delete(long id)
-        {
-            _logger.LogInformation($"delete project with id: {id}");
-            var project = await _dbContext.Projects.FindAsync(id);
-            if (project == null)
-            {
-                _logger.LogWarning($"project with id {id} does not exist");
-                return NotFound();
-            }
-            _dbContext.Projects.Remove(project);
-            await _dbContext.SaveChangesAsync();
-
-            return Ok();
-
-
         }
     }
 }

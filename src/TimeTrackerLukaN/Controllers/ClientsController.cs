@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TimeTrackerLukaN.Data;
+using TimeTrackerLukaN.Domain;
 using TimeTrackerLukaN.Models;
 
 namespace TimeTrackerLukaN.Controllers
@@ -18,52 +19,70 @@ namespace TimeTrackerLukaN.Controllers
         private readonly TimeTrackerDbContext _dbContext;
         private readonly ILogger<ClientsController> _logger;
 
-        public ClientsController(TimeTrackerDbContext dbContext,ILogger<ClientsController> logger)
+        public ClientsController(TimeTrackerDbContext dbContext, ILogger<ClientsController> logger)
         {
             _dbContext = dbContext;
             _logger = logger;
         }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<ClientModel>> GetById(long id)
         {
-            _logger.LogInformation($"Get client by id: {id}");
+            _logger.LogDebug($"Getting a client with id {id}");
+
             var client = await _dbContext.Clients.FindAsync(id);
+
             if (client == null)
             {
-                _logger.LogWarning($"Client with id: {id} is not found");
                 return NotFound();
             }
-            return ClientModel.FromClient(client);
 
+            return ClientModel.FromClient(client);
         }
+
         [HttpGet]
-        public async Task<ActionResult<PagedListModel<ClientModel>>> GetPage(int page = 1, int size = 5)
+        public async Task<ActionResult<PagedList<ClientModel>>> GetPage(int page = 1, int size = 5)
         {
-            _logger.LogInformation($"Getting a page {page} and page size {size}");
+            _logger.LogDebug($"Getting a page {page} of clients with page size {size}");
 
             var clients = await _dbContext.Clients
                 .Skip((page - 1) * size)
                 .Take(size)
                 .ToListAsync();
 
-            var totalClients = await _dbContext.Clients.CountAsync();
-
-            var pagedModel = new PagedListModel<ClientModel>
+            return new PagedList<ClientModel>
             {
                 Items = clients.Select(ClientModel.FromClient),
                 Page = page,
                 PageSize = size,
-                TotalCount = totalClients
+                TotalCount = await _dbContext.Clients.CountAsync()
             };
-            return pagedModel;
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(long id)
+        {
+            _logger.LogDebug($"Deleting client with id {id}");
+
+            var client = await _dbContext.Clients.FindAsync(id);
+
+            if (client == null)
+            {
+                return NotFound();
+            }
+
+            _dbContext.Clients.Remove(client);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
+        }
+
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ClientModel>> Create(ClientInputModel model)
         {
-            _logger.LogInformation($"create user with name {model.Name}");
-            var client = new Domain.Client();
+            _logger.LogDebug($"Creating a new client with name {model.Name}");
+
+            var client = new Client();
             model.MapTo(client);
 
             await _dbContext.Clients.AddAsync(client);
@@ -72,38 +91,26 @@ namespace TimeTrackerLukaN.Controllers
             var resultModel = ClientModel.FromClient(client);
 
             return CreatedAtAction(nameof(GetById), "clients", new { id = client.Id }, resultModel);
-
         }
+
         [HttpPut("{id}")]
-        public async Task<ActionResult<ClientModel>> Update(long id,ClientInputModel model)
+        public async Task<ActionResult<ClientModel>> Update(long id, ClientInputModel model)
         {
-            _logger.LogInformation($"Update Client with id: {id}");
+            _logger.LogDebug($"Updating client with id {id}");
+
             var client = await _dbContext.Clients.FindAsync(id);
+
             if (client == null)
             {
-                _logger.LogWarning($"No user found with id: {id}");
                 return NotFound();
             }
+
             model.MapTo(client);
+
             _dbContext.Clients.Update(client);
-
             await _dbContext.SaveChangesAsync();
+
             return ClientModel.FromClient(client);
-        }
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<ClientModel>> Delete(long id)
-        {
-            _logger.LogInformation($"Deleting client with id: {id}");
-            var client = await _dbContext.Clients.FindAsync(id);
-            if (client == null)
-            {
-                _logger.LogWarning($"No user found with id: {id}");
-                return NotFound();
-            }
-            _dbContext.Clients.Remove(client);
-            await _dbContext.SaveChangesAsync();
-
-            return Ok();
         }
     }
 }

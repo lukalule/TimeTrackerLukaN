@@ -35,7 +35,7 @@ namespace TimeTrackerLukaN.Controllers
 
         }
         [HttpGet]
-        public async Task<ActionResult<PagedListModel<UserModel>>> GetPage(int page = 1, int size = 5)
+        public async Task<ActionResult<PagedList<UserModel>>> GetPage(int page = 1, int size = 5)
         {
             _logger.LogInformation($"Getting a page {page} of users with page size {size}");
 
@@ -46,7 +46,7 @@ namespace TimeTrackerLukaN.Controllers
 
             var totalUsers = await _dbContext.Users.CountAsync();
 
-            return new PagedListModel<UserModel>
+            return new PagedList<UserModel>
             {
                 Items = users.Select(UserModel.FromUser),
                 Page = page,
@@ -55,7 +55,7 @@ namespace TimeTrackerLukaN.Controllers
             };
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delte(long id)
+        public async Task<IActionResult> Delete(long id)
         {
             _logger.LogInformation($"Deleting User with id {id}");
             var user = await _dbContext.Users.FindAsync(id);

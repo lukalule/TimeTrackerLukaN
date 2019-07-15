@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TimeTrackerLukaN.Models
 {
-    public class PagedListModel<T>
+    public class PagedList<T>
     {
         public IEnumerable<T> Items { get; set; }
         public int Page { get; set; }
