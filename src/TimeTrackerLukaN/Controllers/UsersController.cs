@@ -9,6 +9,9 @@ using TimeTrackerLukaN.Models;
 
 namespace TimeTrackerLukaN.Controllers
 {
+    /// <summary>
+    /// encapsulates functionality for adding modifying and deleting users.
+    /// </summary>
     [ApiController]
     [Authorize]
     [Route("/api/users")]
@@ -21,6 +24,7 @@ namespace TimeTrackerLukaN.Controllers
             _dbContext = dbContext;
             _logger = logger;
         }
+
         [HttpGet("{id}")]
         //[Route("{id}")]
         public async Task<ActionResult<UserModel>> /*IActionResult*/ /*ActionResult<UserModel>*/ GetById(long id)
@@ -36,6 +40,13 @@ namespace TimeTrackerLukaN.Controllers
             return UserModel.FromUser(user);
 
         }
+
+        /// <summary>
+        /// gets a single page of users.
+        /// </summary>
+        /// <param name="page">Page number.</param>
+        /// <param name="size">Page size.</param>
+        /// <returns>Paged list of users.</returns>
         [HttpGet]
         public async Task<ActionResult<PagedList<UserModel>>> GetPage(int page = 1, int size = 5)
         {

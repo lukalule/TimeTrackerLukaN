@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TimeTrackerLukaN</name>
+    </assembly>
+    <members>
+        <member name="T:TimeTrackerLukaN.Controllers.TimeEntriesController">
+            <summary>
+            Time entries endpoint of TimeTracker API.
+            </summary>
+        </member>
+        <member name="T:TimeTrackerLukaN.Controllers.UsersController">
+            <summary>
+            encapsulates functionality for adding modifying and deleting users.
+            </summary>
+        </member>
+        <member name="M:TimeTrackerLukaN.Controllers.UsersController.GetPage(System.Int32,System.Int32)">
+            <summary>
+            gets a single page of users.
+            </summary>
+            <param name="page"></param>
+            <param name="size"></param>
+            <returns>Paged list of users.</returns>
+        </member>
+        <member name="T:TimeTrackerLukaN.Models.UserModel">
+            <summary>
+            Represents one time tracker user.
+            </summary>
+        </member>
+        <member name="P:TimeTrackerLukaN.Models.UserModel.Id">
+            <summary>
+            gets or sets user Id.
+            </summary>
+        </member>
+        <member name="P:TimeTrackerLukaN.Models.UserModel.Name">
+            <summary>
+            gets or sets user Name.
+            </summary>
+        </member>
+        <member name="P:TimeTrackerLukaN.Models.UserModel.HourRate">
+            <summary>
+            gets or sets how much the user will be paid per hour.
+            </summary>
+        </member>
+    </members>
+</doc>
