@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29021.104
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTrackerLukaN", "src\TimeTrackerLukaN\TimeTrackerLukaN.csproj", "{487446AA-C1A4-4F8B-B333-442D84ECCEEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeTrackerLukaN", "src\TimeTrackerLukaN\TimeTrackerLukaN.csproj", "{487446AA-C1A4-4F8B-B333-442D84ECCEEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTrackerLukaN.Tests", "src\TimeTrackerLukaN.Tests\TimeTrackerLukaN.Tests.csproj", "{C8E326CF-7907-4E43-AA37-628A591FDEFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{487446AA-C1A4-4F8B-B333-442D84ECCEEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{487446AA-C1A4-4F8B-B333-442D84ECCEEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{487446AA-C1A4-4F8B-B333-442D84ECCEEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8E326CF-7907-4E43-AA37-628A591FDEFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8E326CF-7907-4E43-AA37-628A591FDEFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8E326CF-7907-4E43-AA37-628A591FDEFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8E326CF-7907-4E43-AA37-628A591FDEFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
