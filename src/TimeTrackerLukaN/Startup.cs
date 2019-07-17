@@ -55,7 +55,7 @@ namespace TimeTrackerLukaN
             }
 
             app.UseMiddleware<ErrorHandlingMiddleware>();
-
+            app.UseMiddleware<LimitingMiddleware>();
             app.UseHttpsRedirection();
 
             app.UseRouting();
