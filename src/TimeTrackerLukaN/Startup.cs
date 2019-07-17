@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,6 +40,11 @@ namespace TimeTrackerLukaN
 
             services.AddControllers().AddFluentValidation(
                 options => options.RegisterValidatorsFromAssemblyContaining<UserInputModelValidator>());
+
+            services.AddHealthChecks()
+                .AddSqlite(Configuration.GetConnectionString("DefaultConnection"));
+
+            services.AddHealthChecksUI();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,9 +72,16 @@ namespace TimeTrackerLukaN
             app.UseOpenApi();
             app.UseSwaggerUi3();
 
+            app.UseHealthChecksUI();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health", 
+                    new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions {
+                        Predicate = _ => true,
+                        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                    });
             });
         }
         

@@ -1,0 +1,1 @@
+https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks
