@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeTrackerLukaN", "src\Tim
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeTrackerLukaN.Tests", "src\TimeTrackerLukaN.Tests\TimeTrackerLukaN.Tests.csproj", "{C8E326CF-7907-4E43-AA37-628A591FDEFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTrackerLukaN.Client", "TimeTrackerLukaN.Client\TimeTrackerLukaN.Client.csproj", "{33277FD7-9814-40E4-B04B-DAA4B52E2C5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeTrackerLukaN.Client", "TimeTrackerLukaN.Client\TimeTrackerLukaN.Client.csproj", "{33277FD7-9814-40E4-B04B-DAA4B52E2C5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

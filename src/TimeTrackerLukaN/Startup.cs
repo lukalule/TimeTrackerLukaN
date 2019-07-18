@@ -38,6 +38,8 @@ namespace TimeTrackerLukaN
 
             services.AddOpenApi();
 
+            services.AddCors();
+
             services.AddControllers().AddFluentValidation(
                 options => options.RegisterValidatorsFromAssemblyContaining<UserInputModelValidator>());
 
@@ -68,6 +70,14 @@ namespace TimeTrackerLukaN
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            // WARNING: Demo purposes only
+            // You should limit to a specific origin list
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                );
 
             app.UseOpenApi();
             app.UseSwaggerUi3();
