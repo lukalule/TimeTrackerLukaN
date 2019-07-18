@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using TimeTrackerLukaN.Client.Security;
 
 namespace TimeTrackerLukaN.Client
 {
@@ -7,6 +8,8 @@ namespace TimeTrackerLukaN.Client
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthorizationCore();
+            services.AddTokenAuthenticationStateProvider();
         }
 
         public void Configure(IComponentsApplicationBuilder app)
